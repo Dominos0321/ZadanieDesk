@@ -128,6 +128,7 @@
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(257, 20);
             this.textBox2.TabIndex = 4;
+            this.textBox2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.textBox2_MouseDown);
             // 
             // textBox1
             // 
@@ -207,6 +208,7 @@
             this.textBox11.Name = "textBox11";
             this.textBox11.Size = new System.Drawing.Size(100, 20);
             this.textBox11.TabIndex = 10;
+            this.textBox11.MouseDown += new System.Windows.Forms.MouseEventHandler(this.textBox11_MouseDown);
             // 
             // textBox10
             // 
@@ -214,6 +216,7 @@
             this.textBox10.Name = "textBox10";
             this.textBox10.Size = new System.Drawing.Size(100, 20);
             this.textBox10.TabIndex = 9;
+            this.textBox10.MouseDown += new System.Windows.Forms.MouseEventHandler(this.textBox10_MouseDown);
             // 
             // label10
             // 
@@ -350,11 +353,10 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(171, 510);
+            this.label13.Location = new System.Drawing.Point(177, 506);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(41, 13);
+            this.label13.Size = new System.Drawing.Size(0, 13);
             this.label13.TabIndex = 9;
-            this.label13.Text = "label13";
             // 
             // radioButton3
             // 
