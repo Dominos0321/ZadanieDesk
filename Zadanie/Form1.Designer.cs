@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.maskedTextBox2 = new System.Windows.Forms.MaskedTextBox();
+            this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
@@ -38,6 +40,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.maskedTextBox3 = new System.Windows.Forms.MaskedTextBox();
             this.textBox11 = new System.Windows.Forms.TextBox();
             this.textBox10 = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
@@ -63,9 +66,7 @@
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
-            this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
-            this.maskedTextBox2 = new System.Windows.Forms.MaskedTextBox();
-            this.maskedTextBox3 = new System.Windows.Forms.MaskedTextBox();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -87,6 +88,23 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Dane Osobowe ucznia";
+            // 
+            // maskedTextBox2
+            // 
+            this.maskedTextBox2.Location = new System.Drawing.Point(185, 102);
+            this.maskedTextBox2.Mask = "00000000000";
+            this.maskedTextBox2.Name = "maskedTextBox2";
+            this.maskedTextBox2.Size = new System.Drawing.Size(258, 20);
+            this.maskedTextBox2.TabIndex = 10;
+            // 
+            // maskedTextBox1
+            // 
+            this.maskedTextBox1.Location = new System.Drawing.Point(186, 73);
+            this.maskedTextBox1.Mask = "00/00/0000";
+            this.maskedTextBox1.Name = "maskedTextBox1";
+            this.maskedTextBox1.Size = new System.Drawing.Size(100, 20);
+            this.maskedTextBox1.TabIndex = 9;
+            this.maskedTextBox1.ValidatingType = typeof(System.DateTime);
             // 
             // label5
             // 
@@ -110,6 +128,7 @@
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(257, 20);
             this.textBox2.TabIndex = 4;
+            this.textBox2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.textBox2_MouseDown);
             // 
             // textBox1
             // 
@@ -175,12 +194,21 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Adres korespondencyjny";
             // 
+            // maskedTextBox3
+            // 
+            this.maskedTextBox3.Location = new System.Drawing.Point(186, 101);
+            this.maskedTextBox3.Mask = "00-000";
+            this.maskedTextBox3.Name = "maskedTextBox3";
+            this.maskedTextBox3.Size = new System.Drawing.Size(117, 20);
+            this.maskedTextBox3.TabIndex = 11;
+            // 
             // textBox11
             // 
             this.textBox11.Location = new System.Drawing.Point(342, 127);
             this.textBox11.Name = "textBox11";
             this.textBox11.Size = new System.Drawing.Size(100, 20);
             this.textBox11.TabIndex = 10;
+            this.textBox11.MouseDown += new System.Windows.Forms.MouseEventHandler(this.textBox11_MouseDown);
             // 
             // textBox10
             // 
@@ -188,6 +216,7 @@
             this.textBox10.Name = "textBox10";
             this.textBox10.Size = new System.Drawing.Size(100, 20);
             this.textBox10.TabIndex = 9;
+            this.textBox10.MouseDown += new System.Windows.Forms.MouseEventHandler(this.textBox10_MouseDown);
             // 
             // label10
             // 
@@ -294,6 +323,7 @@
             this.radioButton1.TabStop = true;
             this.radioButton1.Text = "technik informatyk";
             this.radioButton1.UseVisualStyleBackColor = true;
+            this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
             // 
             // radioButton2
             // 
@@ -305,6 +335,7 @@
             this.radioButton2.TabStop = true;
             this.radioButton2.Text = "technik programista";
             this.radioButton2.UseVisualStyleBackColor = true;
+            this.radioButton2.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged);
             // 
             // comboBox2
             // 
@@ -317,15 +348,15 @@
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(121, 21);
             this.comboBox2.TabIndex = 8;
+            this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
             // 
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(171, 510);
+            this.label13.Location = new System.Drawing.Point(177, 506);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(41, 13);
+            this.label13.Size = new System.Drawing.Size(0, 13);
             this.label13.TabIndex = 9;
-            this.label13.Text = "label13";
             // 
             // radioButton3
             // 
@@ -405,31 +436,7 @@
             this.button3.TabIndex = 17;
             this.button3.Text = "zapisz";
             this.button3.UseVisualStyleBackColor = true;
-            // 
-            // maskedTextBox1
-            // 
-            this.maskedTextBox1.Location = new System.Drawing.Point(186, 73);
-            this.maskedTextBox1.Mask = "00/00/0000";
-            this.maskedTextBox1.Name = "maskedTextBox1";
-            this.maskedTextBox1.Size = new System.Drawing.Size(100, 20);
-            this.maskedTextBox1.TabIndex = 9;
-            this.maskedTextBox1.ValidatingType = typeof(System.DateTime);
-            // 
-            // maskedTextBox2
-            // 
-            this.maskedTextBox2.Location = new System.Drawing.Point(185, 102);
-            this.maskedTextBox2.Mask = "00000000000";
-            this.maskedTextBox2.Name = "maskedTextBox2";
-            this.maskedTextBox2.Size = new System.Drawing.Size(258, 20);
-            this.maskedTextBox2.TabIndex = 10;
-            // 
-            // maskedTextBox3
-            // 
-            this.maskedTextBox3.Location = new System.Drawing.Point(186, 101);
-            this.maskedTextBox3.Mask = "00-000";
-            this.maskedTextBox3.Name = "maskedTextBox3";
-            this.maskedTextBox3.Size = new System.Drawing.Size(117, 20);
-            this.maskedTextBox3.TabIndex = 11;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // Form1
             // 
@@ -504,6 +511,7 @@
         private System.Windows.Forms.MaskedTextBox maskedTextBox2;
         private System.Windows.Forms.MaskedTextBox maskedTextBox1;
         private System.Windows.Forms.MaskedTextBox maskedTextBox3;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
     }
 }
 
