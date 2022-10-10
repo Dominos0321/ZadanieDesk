@@ -25,8 +25,9 @@ namespace Zadanie
         void start()
         {
             radioButton1.Checked = true;
-            zmianazawodu();
+            zawod();
             radioButton3.Checked = true;
+            spr();
         }
 
 
@@ -48,6 +49,41 @@ namespace Zadanie
             string mail = textBox11.Text;
 
             bool test = true;
+
+
+
+           if (nazwisko == "" || imie == "" || data == "" || miejsce == "" || pesel == "" || miejscowosc == "" || ulica == "" || kod == "" || poczta == "" || tel == "" || mail == "" || comboBox1.Text == "" || comboBox2.Text == "")
+            {
+                MessageBox.Show("Należy uzupełnić wszystkie pola", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                test = false;
+            }
+
+           if (imie.LastIndexOf("a") + 1 != imie.Length && System.Text.RegularExpressions.Regex.IsMatch(pesel, "^[0-9]{9}[13579][0-9]$") == false)
+            {
+                MessageBox.Show("Niezgodne imię z numerem PESEL", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                textBox2.BackColor = Color.Red;
+                test = false;
+            }
+
+            if (System.Text.RegularExpressions.Regex.IsMatch(tel, "^[\\+][0-9]{2}[\\s][0-9]{9}$") == false)
+            {
+                MessageBox.Show("Błędny numer telefonu", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                textBox10.BackColor = Color.Red;
+                test = false;
+            }
+
+            if (System.Text.RegularExpressions.Regex.IsMatch(mail, "^(.+)[@](.+)$") == false)
+            {
+                MessageBox.Show("Mail powinien zawierać znak @", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                textBox11.BackColor = Color.Red;
+                test = false;
+            }
+
+            if (test == true)
+            {
+                richTextBox1.Text = string.Empty;
+                wypisz();
+            }
         } 
 
         private void button2_Click(object sender, EventArgs e)
@@ -97,7 +133,7 @@ namespace Zadanie
         }
 
 
-        void zmianazawodu()
+        void zawod()
         {
             if (radioButton1.Checked == true)
             {
@@ -118,12 +154,12 @@ namespace Zadanie
 
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
-            zmianazawodu();
+            zawod();
         }
 
         private void radioButton2_CheckedChanged(object sender, EventArgs e)
         {
-            zmianazawodu();
+            zawod();
         }
 
 
@@ -156,6 +192,43 @@ namespace Zadanie
 
             tekst.Text += "Dane osobowe ucznia\n Nazwisko:       " + nazwisko + "\n Imię(imiona):     " + imie + "\n Data i miejsce urodzenia:    " + data + ", " + miejsce + "\n Numer PESEL:       " + pesel;
             tekst.Text += "\n Adres korespondencyjny\n miejscowość: " + miejscowosc + "\n ulica i numer domu: " + ulica + "\n kod pocztowy i poczta: " + kod + ", " + poczta + "\n nr telefonu z kierunkowym" + tel + "\n mail: " + mail;
+            
+            if(radioButton3.Checked == true)
+            {
+                tekst.Text += "\n\n Deklaruję przystąpienie do egzaminu po raz pierwszy";
+            }
+
+            else if(radioButton4.Checked == true)
+            {
+                if(checkBox1.Checked == true)
+                {
+                    tekst.Text += "\n\n Deklaruję przystąpienie do egzaminu po raz kolejny do części pisemnej";
+                }
+
+                else if(checkBox2.Checked == true)
+                {
+                    tekst.Text += "\n\n Deklaruję przystąpienie do egzaminu po raz kolejny do części praktycznej";
+                }
+
+                else if(checkBox1.Checked == true && checkBox2.Checked == true)
+                {
+                    tekst.Text += "\n\n Deklaruję przystąpienie do egzaminu po raz kolejny do części pisemnej oraz praktycznej";
+                }
+            }
+
+            tekst.Text += "\n Oznaczenie kwalifikacji zgodne z podstawą programową:   " + comboBox2.Text + "\n Nazwa kwalifikacji:    " + label13.Text;
+            
+            if(radioButton1.Checked == true)
+            {
+                tekst.Text += "\n\n Symbol cyfrowy zawodu: 351203 \n Nazwa zawodu: technik informatyk";
+            }
+
+            else
+            {
+                tekst.Text += "\n\n Symbol cyfrowy zawodu: 351406 \n Nazwa zawodu: technik programista";
+            }
+
+            
 
         }
 
@@ -172,6 +245,36 @@ namespace Zadanie
         private void textBox10_MouseDown(object sender, MouseEventArgs e)
         {
             textBox10.BackColor = Color.White;
+        }
+
+        void spr()
+        {
+            if (radioButton3.Checked == true)
+            {
+                checkBox1.Enabled = false;
+                checkBox2.Enabled = false;
+            }
+
+                if(radioButton4.Checked == true)
+            {
+                checkBox1.Enabled = true;
+                checkBox2.Enabled = true;
+            }
+        }
+
+        private void radioButton4_CheckedChanged(object sender, EventArgs e)
+        {
+            spr();
+        }
+
+        private void radioButton3_CheckedChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void richTextBox1_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
